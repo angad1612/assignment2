@@ -1,1 +1,19 @@
-<p>chat works!</p>
+<div>
+    <div class="scrollArea" id="chatScrollArea">
+        <table *ngFor="let message of chat">
+            <tr>
+                <td><img src="{{profilePics[message.user]}}" width="32" height="32"></td>
+                <th>{{message.user}}:</th>
+                <td>
+                    <img src="{{message.image}}" *ngIf="message.image">
+                    <br *ngIf="message.image">{{message.text}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <input type="file" (change)="onFileChanged($event)" id="imageInput">
+    {{invalidFileWarning}}
+    <br><input type="text" class="form-control" id="chatInput" [(ngModel)]="textInput">
+    <input type="submit" value="Send" (click)=sendMessage()>
+</div>
+
