@@ -1,1 +1,39 @@
-<p>users works!</p>
+<div>
+    <table *ngIf="isGroupAdmin">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <tr style="padding-top:20px;" *ngFor="let user of users">
+            <ng-container>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td *ngIf=isSuperAdmin>
+                    <input type="submit" value="Change Role \/" (click)="toggleDropdown(user)">
+                    <div class="dropdown-content" id="roleDropdown{{user.name}}">
+                        <table>
+                            <tr><input type="submit" value="Super Admin" id="SelectsuperAdmin{{user.name}}" (click)="updateRole('superAdmin', user.name)"></tr>
+                            <tr><input type="submit" value="Group Admin" id="SelectgroupAdmin{{user.name}}" (click)="updateRole('groupAdmin', user.name)"></tr>
+                            <tr><input type="submit" value="None" id="Selectnone{{user.name}}" (click)="updateRole('none', user.name)"></tr>
+                        </table>
+                    </div>
+                </td>
+                <td><input type="submit" value="Delete User" (click)="addRemoveUser(user.name)"></td>
+            </ng-container>
+        </tr>
+        <tr style="padding-top:20px;">
+            <td><input type="text" [(ngModel)]=newUserData.name></td>
+            <td><input type="text" [(ngModel)]=newUserData.email></td>
+            <td *ngIf=isSuperAdmin>
+                <input type="submit" value="Set Role \/" (click)="toggleDropdown()">
+                <div class="dropdown-content" id="newUserRoleDropdown">
+                    <table>
+                        <tr><input type="submit" value="Group Admin" id="newUserSelectgroupAdmin" (click)="updateRole('groupAdmin')"></tr>
+                        <tr><input type="submit" value="None" id="newUserSelectnone" (click)="updateRole('none')"></tr>
+                    </table>
+                </div>
+            </td>
+            <td><input type="submit" value="Add User" (click)="addRemoveUser()"></td>
+        </tr>
+    </table>
+</div>
