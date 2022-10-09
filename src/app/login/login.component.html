@@ -1,1 +1,13 @@
-<p>login works!</p>
+<div>
+    <div>
+      <form>
+        <input type="text" [(ngModel)]="loginDetails.username" id="username" name="username" placeholder="username">
+        <br><input type="password" [(ngModel)]="loginDetails.password" id="password" name="password" placeholder="password">
+        <br><input type="submit" value="Log In" (click)="loginClicked()">
+      </form>
+    </div>
+    <div *ngIf="showError">
+        User credentials are not valid
+    </div>
+  </div>
+  
