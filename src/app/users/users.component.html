@@ -9,7 +9,7 @@
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
                 <td *ngIf=isSuperAdmin>
-                    <input type="submit" value="Change Role \/" (click)="toggleDropdown(user)">
+                    <input type="submit" value="Change Role" (click)="toggleDropdown(user)">
                     <div class="dropdown-content" id="roleDropdown{{user.name}}">
                         <table>
                             <tr><input type="submit" value="Super Admin" id="SelectsuperAdmin{{user.name}}" (click)="updateRole('superAdmin', user.name)"></tr>
@@ -25,7 +25,7 @@
             <td><input type="text" [(ngModel)]=newUserData.name></td>
             <td><input type="text" [(ngModel)]=newUserData.email></td>
             <td *ngIf=isSuperAdmin>
-                <input type="submit" value="Set Role \/" (click)="toggleDropdown()">
+                <input type="submit" value="Set Role" (click)="toggleDropdown()">
                 <div class="dropdown-content" id="newUserRoleDropdown">
                     <table>
                         <tr><input type="submit" value="Group Admin" id="newUserSelectgroupAdmin" (click)="updateRole('groupAdmin')"></tr>
