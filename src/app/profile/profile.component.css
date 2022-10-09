@@ -1,0 +1,21 @@
+h1, h2,h3{
+    text-align: center; 
+    
+ }
+ 
+ label {
+     text-align: center; 
+     
+ }
+ 
+ form {
+     text-align: center;
+ }
+
+ .form-control{
+    text-align: center;
+    width: 20%;
+    margin-left: 720px;
+    border: 6px solid black;
+    
+}
