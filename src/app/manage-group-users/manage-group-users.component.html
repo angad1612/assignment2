@@ -1,1 +1,35 @@
-<p>manage-group-users works!</p>
+<div>
+    <table *ngIf="isGroupAssis">
+        <tr>
+            <th><input type="submit" value="<- Back" [routerLink]="['/']"></th>
+            <th>{{group}}</th>
+        </tr>
+        <tr *ngFor="let user of Object.keys(users)">
+            <td>{{user}}</td>
+            <td *ngIf="isGroupAdmin">
+                <input type="submit" value="Add to Group" *ngIf="!users[user].authorised" (click)="addRemoveGroupChannelUser(user, false)">
+                <input type="submit" value="Remove From Group" *ngIf="users[user].authorised" id="groupRemove{{user}}" (click)="addRemoveGroupChannelUser(user, true)">
+            <td>
+            <td *ngIf="isGroupAdmin">
+                <input type="submit" value="Make Group Assistant" id="groupAssis{{user}}" (click)="addRemoveGroupAssis(user, false)" *ngIf="!users[user].groupAssis">
+                <input type="submit" value="Remove as Group Assistant" id="groupAssis{{user}}" (click)="addRemoveGroupAssis(user, true)" *ngIf="users[user].groupAssis">
+            </td>
+            <td>
+                <input type="submit" value="Add to Channel \/" id="channelAdd{{user}}" (click)="toggleDropdown('add', user)">
+                <div class="add-dropdown-content" id="addDropdown{{user}}">
+                    <table *ngFor="let channel of Object.keys(users[user].channels)">
+                        <tr *ngIf="!users[user].channels[channel]"><input type="submit" value="{{channel}}" (click)="addRemoveGroupChannelUser(user, false, channel)"></tr>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <input type="submit" value="Remove From Channel \/" id="channelRemove{{user}}" (click)="toggleDropdown('remove', user)">
+                <div class="remove-dropdown-content" id="removeDropdown{{user}}">
+                    <table *ngFor="let channel of Object.keys(users[user].channels)">
+                        <tr *ngIf="users[user].channels[channel]"><input type="submit" value="{{channel}}" (click)="addRemoveGroupChannelUser(user, true, channel)"></tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
