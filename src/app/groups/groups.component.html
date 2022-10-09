@@ -1,1 +1,41 @@
-<p>groups works!</p>
+<div>
+    <table>
+        <tr>
+            <th>Groups</th>
+            <th></th>
+            <th>Channels</th>
+        </tr>
+        <ng-container *ngFor="let group of Object.keys(authorisedChannels)">
+            <tr>
+                <td>{{group}}</td>
+                <td>
+                    <input type="submit" value="Manage Users" [routerLink]="['/manageGroupUsers', group]" *ngIf="isGroupAssis[group]">
+                    <input type="submit" value="Delete" (click)="delete(group)" *ngIf="isGroupAdmin">
+                </td>
+            </tr>
+            <tr  *ngFor="let channel of authorisedChannels[group]">
+                <td></td>
+                <td></td>
+                <td>{{channel}}</td>
+                <td>
+                    <input type="submit" value="Connect" (click)="connectToChannel(group, channel)">
+                    <input type="submit" value="Delete" (click)="delete(group, channel)" *ngIf="isGroupAdmin">
+                </td>
+            </tr>
+            <tr  *ngIf="isGroupAssis[group]">
+                <td></td>
+                <td></td>
+                <td><input type="text" id="{{group}}NewChannelInput"></td>
+                <td>
+                    <input type="submit" value="Add" (click)="add(group, group+'NewChannelInput')">
+                </td>
+            </tr>
+        </ng-container>
+        <tr *ngIf="isGroupAdmin">
+            <td><input type="text" id="newGroupInput"></td>
+            <td>
+                <input type="submit" value="Add" (click)="add(document.getElementById('newGroupInput').value)">
+            </td>
+        </tr>
+    </table>
+</div>
